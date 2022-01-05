@@ -25,7 +25,10 @@ const PasswordStrengthBar = ({
           aria-valuenow={(PASSWORD_STRENGTH_PERCENTAGE as any)[passwordStrengthScore]}
           aria-valuetext={(PASSWORD_STRENGTH_PERCENTAGE as any)[passwordStrengthScore]}
           role="progressbar"
-          className="mb-2 bg-bg-alt-light dark:bg-bg-alt-dark rounded overflow-hidden transition-all border dark:border-dark"
+          className={[
+            'mb-2 bg-bg-alt-light dark:bg-bg-alt-dark rounded',
+            'overflow-hidden transition-all border dark:border-dark',
+          ].join(' ')}
         >
           <div
             style={{
@@ -38,9 +41,12 @@ const PasswordStrengthBar = ({
         </div>
       )}
       <Typography.Text
-        className={
-          passwordStrengthScore >= DEFAULT_MINIMUM_PASSWORD_STRENGTH ? 'text-green-600' : ''
-        }
+        type={passwordStrengthScore >= DEFAULT_MINIMUM_PASSWORD_STRENGTH ? 'success' : 'default'}
+        className={`${
+          passwordStrengthScore >= DEFAULT_MINIMUM_PASSWORD_STRENGTH
+            ? 'text-green-600'
+            : 'opacity-50'
+        }`}
       >
         {passwordStrengthMessage
           ? passwordStrengthMessage
