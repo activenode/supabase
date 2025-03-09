@@ -92,7 +92,7 @@ const csp = [
   `object-src 'none';`,
   `base-uri 'self';`,
   `form-action 'self';`,
-  `frame-ancestors 'none';`,
+  (process.env.NEXT_PUBLIC_IS_PLATFORM === 'true' ? `frame-ancestors 'none';` : ''), // allow to embed e.g. in VSCode simple browser preview
   `block-all-mixed-content;`,
   ...(process.env.NEXT_PUBLIC_IS_PLATFORM === 'true' &&
   process.env.NEXT_PUBLIC_ENVIRONMENT === 'prod'
